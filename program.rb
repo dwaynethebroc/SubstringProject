@@ -7,8 +7,11 @@ def substrings(target_substring, source_dictionary)
   #if every letter in the source_dictionary string 
   #is contained within the target_substring
   #push string to hash and return the hash with a count
-  
+
+=begin 
   final_hash = []
+
+
   
   source_dictionary.each do |word|
     if target_substring.include?(word)
@@ -17,6 +20,19 @@ def substrings(target_substring, source_dictionary)
   end
 
   return final_array.each_with_object(Hash.new(0)) {|word, acc| acc[word] += 1}
+
+=end 
+
+final_count = source_dictionary.each_with_object(Hash.new(0)) do |word, acc| 
+  target_substring.split(' ').each do |sub_word|
+    if sub_word.downcase.include?(word)
+      acc[word] += 1
+    end
+  end
+end
+
+return final_count
+
 end
 
 
